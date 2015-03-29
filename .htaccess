@@ -1,0 +1,14 @@
+Options FollowSymLinks Includes
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteBase /
+
+RewriteRule api/(\d+)/(hotentry|newentry)/(.*) api/more.php?p=$1&t=$2&c=$3 [L,QSA]
+RewriteRule api/(\d+)/(hotentry|newentry) api/more.php?p=$1&t=$2 [L,QSA]
+RewriteRule api/search/(tag|title|body) api/smore.php?tar=$1 [L,QSA]
+RewriteRule api/comment api/comment.php [L,QSA]
+
+RewriteRule (hotentry|newentry)/(\w+)/?(\d+)? entry.php?t=$1&c=$2 [L,QSA]
+RewriteRule (hotentry|newentry)/?(\d+)? entry.php?t=$1 [L,QSA]
+RewriteRule search/(tag|title|body)/?(\d+)? search.php?tar=$1 [L,QSA]
